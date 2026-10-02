@@ -125,8 +125,8 @@ final class PairingStore: ObservableObject {
   }
 
   private func requireReady() throws {
-    guard AccessController.isExactTarget, access.isReady else {
-      throw PairBackError("PairBack only writes on iPhone17,1 build 22G100 after Prepare Access")
+    guard access.isReady else {
+      throw PairBackError("Prepare Access first")
     }
     guard !hasOwnerReceipts else {
       throw PairBackError("Repair the saved file ownership receipt before another write")

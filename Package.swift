@@ -5,7 +5,16 @@ let package = Package(
     platforms: [.macOS(.v13)],
     products: [.library(name: "PairBackPlan", targets: ["PairBackPlan"])],
     targets: [
-        .target(name: "PairBackPlan", path: "App", sources: ["PairBackPlan.swift"]),
+        .target(
+            name: "PairBackPlan",
+            path: "App",
+            exclude: [
+                "AccessController.swift", "Assets.xcassets", "BridgingHeader.h", "Info.plist",
+                "KernelcacheLoader.swift", "MobileGestaltOffset.m", "PairBackApp.swift",
+                "PairBackView.swift", "PairingStore.swift"
+            ],
+            sources: ["PairBackPlan.swift"]
+        ),
         .testTarget(name: "PairBackPlanTests", dependencies: ["PairBackPlan"], path: "Tests")
     ]
 )

@@ -6,10 +6,10 @@ struct PairBackView: View {
 
   var body: some View {
     Form {
-      Section("Target") {
-        Text("iPhone 16 Pro · iOS 18.6.2 (22G100)")
+      Section("Support") {
+        Text("DarkSword: iOS 17.0–18.7.1 or 26.0–26.0.1")
         Text(
-          "PairBack changes the three settings used to pair a Series 10 on watchOS 26.5. It refuses other devices and builds."
+          "PairBack changes the three settings used to pair a Series 10 on watchOS 26.5. Pairing was verified on iPhone 16 Pro with iOS 18.6.2."
         )
         .font(.footnote)
         .foregroundStyle(.secondary)

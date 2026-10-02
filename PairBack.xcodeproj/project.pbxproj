@@ -286,7 +286,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Vendor/Lara/headers $(SRCROOT)/Vendor/Lara/choma $(SRCROOT)/Vendor/Lara/kexploit $(SRCROOT)/Vendor/Lara/kexploit/pe $(SRCROOT)/Vendor/Lara/kexploit/TaskRop";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Vendor/Lara/lib";
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -375,7 +375,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Vendor/Lara/headers $(SRCROOT)/Vendor/Lara/choma $(SRCROOT)/Vendor/Lara/kexploit $(SRCROOT)/Vendor/Lara/kexploit/pe $(SRCROOT)/Vendor/Lara/kexploit/TaskRop";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Vendor/Lara/lib";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;

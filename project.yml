@@ -2,7 +2,7 @@ name: PairBack
 options:
   bundleIdPrefix: me.romashka
   deploymentTarget:
-    iOS: '18.6'
+    iOS: '17.0'
 settings:
   base:
     ARCHS: arm64e

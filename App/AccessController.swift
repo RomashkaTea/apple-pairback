@@ -13,20 +13,6 @@ final class AccessController: ObservableObject {
 
   private init() {}
 
-  static func sysctlString(_ name: String) -> String? {
-    var size = 0
-    guard name.withCString({ sysctlbyname($0, nil, &size, nil, 0) }) == 0,
-      size > 1, size < 256
-    else { return nil }
-    var bytes = [CChar](repeating: 0, count: size)
-    guard name.withCString({ sysctlbyname($0, &bytes, &size, nil, 0) }) == 0 else { return nil }
-    return String(cString: bytes)
-  }
-
-  static var isExactTarget: Bool {
-    sysctlString("hw.machine") == "iPhone17,1" && sysctlString("kern.osversion") == "22G100"
-  }
-
   private static var isDebugged: Bool {
     var info = kinfo_proc()
     var mib: [Int32] = [CTL_KERN, KERN_PROC, KERN_PROC_PID, getpid()]
@@ -37,8 +23,8 @@ final class AccessController: ObservableObject {
 
   func prepare() {
     guard !isWorking, !isReady else { return }
-    guard Self.isExactTarget else {
-      message = "PairBack only supports iPhone17,1 on iOS build 22G100."
+    guard PairBackPlan.supportsDarkSword(ProcessInfo.processInfo.operatingSystemVersion) else {
+      message = "DarkSword supports iOS 17.0–18.7.1 and 26.0–26.0.1."
       return
     }
     guard !Self.isDebugged else {

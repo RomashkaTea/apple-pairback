@@ -8,7 +8,6 @@ struct PairBackError: LocalizedError {
 
 enum PairBackPlan {
   static let gestaltKey = "EqrsVvjcYDdxHBiQmGhAWw"
-  static let expectedGestaltOffset = 248
   static let featureKey = "networkrelay_pairing"
   static let limits: [String: Int] = [
     "maxPairingCompatibilityVersion": 99,
@@ -16,6 +15,20 @@ enum PairBackPlan {
     "minPairingCompatibilityVersionWithChipID": 10,
     "minQuickSwitchCompatibilityVersion": 6,
   ]
+
+  static func supportsDarkSword(_ version: OperatingSystemVersion) -> Bool {
+    switch version.majorVersion {
+    case 17:
+      return true
+    case 18:
+      return version.minorVersion < 7
+        || (version.minorVersion == 7 && version.patchVersion <= 1)
+    case 26:
+      return version.minorVersion == 0 && version.patchVersion <= 1
+    default:
+      return false
+    }
+  }
 
   static func dictionary(_ data: Data) throws -> NSMutableDictionary {
     var format = PropertyListSerialization.PropertyListFormat.binary
@@ -38,15 +51,14 @@ enum PairBackPlan {
   }
 
   static func gestaltValues(_ data: Data, offset: Int) throws -> (Int64, NSNumber?) {
-    guard offset == expectedGestaltOffset else {
-      throw PairBackError("Unexpected MobileGestalt key offset \(offset)")
-    }
     let dictionary = try dictionary(data)
     guard let cache = dictionary["CacheData"] as? NSData,
       let extra = dictionary["CacheExtra"] as? NSDictionary,
-      cache.length >= offset + MemoryLayout<Int64>.size
+      offset >= 0, offset.isMultiple(of: MemoryLayout<Int64>.size),
+      cache.length >= MemoryLayout<Int64>.size,
+      offset <= cache.length - MemoryLayout<Int64>.size
     else {
-      throw PairBackError("MobileGestalt cache structure differs from the verified build")
+      throw PairBackError("Invalid MobileGestalt cache structure or key offset")
     }
     var value: Int64 = 0
     cache.getBytes(&value, range: NSRange(location: offset, length: MemoryLayout<Int64>.size))

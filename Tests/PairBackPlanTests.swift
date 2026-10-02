@@ -43,12 +43,33 @@ final class PairBackPlanTests: XCTestCase {
     XCTAssertNotNil(result["another_feature"])
   }
 
-  func testRejectsWrongGestaltOffsetAndUnexpectedValue() throws {
+  func testMobileGestaltAcceptsResolvedOffsetsAndRejectsInvalidOnes() throws {
     var cache = Data(repeating: 0, count: 320)
     cache.replaceSubrange(248..<256, with: Data(repeating: 3, count: 8))
     let input = try plist(["CacheData": cache, "CacheExtra": [:]])
-    XCTAssertThrowsError(try PairBackPlan.enableGestalt(input, offset: 256))
+    let applied = try PairBackPlan.enableGestalt(input, offset: 256)
+    XCTAssertEqual(try PairBackPlan.gestaltValues(applied, offset: 256).0, 1)
+    let appliedCache = try XCTUnwrap(PairBackPlan.dictionary(applied)["CacheData"] as? Data)
+    XCTAssertEqual(appliedCache.subdata(in: 248..<256), cache.subdata(in: 248..<256))
+    XCTAssertThrowsError(try PairBackPlan.enableGestalt(input, offset: -1))
+    XCTAssertThrowsError(try PairBackPlan.enableGestalt(input, offset: 249))
+    XCTAssertThrowsError(try PairBackPlan.enableGestalt(input, offset: 320))
     XCTAssertThrowsError(try PairBackPlan.enableGestalt(input, offset: 248))
+  }
+
+  func testDarkSwordVersionBoundaries() {
+    func supported(_ major: Int, _ minor: Int, _ patch: Int) -> Bool {
+      PairBackPlan.supportsDarkSword(
+        OperatingSystemVersion(majorVersion: major, minorVersion: minor, patchVersion: patch))
+    }
+    XCTAssertFalse(supported(16, 7, 0))
+    XCTAssertTrue(supported(17, 0, 0))
+    XCTAssertTrue(supported(18, 7, 1))
+    XCTAssertFalse(supported(18, 7, 2))
+    XCTAssertFalse(supported(19, 0, 0))
+    XCTAssertTrue(supported(26, 0, 1))
+    XCTAssertFalse(supported(26, 0, 2))
+    XCTAssertFalse(supported(26, 1, 0))
   }
 
   func testRegistryCheckProtectsUnrelatedEntries() throws {
