@@ -1,0 +1,441 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A884993AB9E6636EB21418E /* PairBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7023BEBEC1EE2820A5A66F2 /* PairBackView.swift */; };
+		0AA18FA561B31AA433E8F6FA /* darksword.m in Sources */ = {isa = PBXBuildFile; fileRef = 4212272C7AA97F6A44861CC3 /* darksword.m */; };
+		162C27C094B901DF296D5F19 /* PairingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFCAA5785A78E12FBB46A5E /* PairingStore.swift */; };
+		313F39ACC129F899434B7B39 /* vfs.m in Sources */ = {isa = PBXBuildFile; fileRef = 122D5AAAA1CEB0667AFBA4F3 /* vfs.m */; };
+		42C9753F3EB89BB2C192B071 /* sbx.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAA48BE0480B112ED206137 /* sbx.m */; };
+		4C980C2E975D26A71D04D88A /* libxpf.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7570E1492B5B3EFED4467EA6 /* libxpf.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4D13DB2DBBC2DD05E4AF636B /* libgrabkernel2.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 864BEA5EAF71BC5151C46392 /* libgrabkernel2.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		77094A840E6EF876E783D952 /* PairBackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346FCA18D83322E9AD6A1CF /* PairBackApp.swift */; };
+		7B908604F858DA583C7B7602 /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A86D33D532A51AF23565CB0 /* utils.m */; };
+		84ACA301DA8693D259CE35F7 /* apfs.m in Sources */ = {isa = PBXBuildFile; fileRef = 170888DFEDAD1D54E8A1F07A /* apfs.m */; };
+		8B0DA417DB0DBB5AE5A709D3 /* KernelcacheLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76542A7F44372E81475AE3FA /* KernelcacheLoader.swift */; };
+		96B9C9858F968D57BE65452F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D201EDE29B940FE0FDEA197 /* Assets.xcassets */; };
+		9A9181923A9B9EAA4BE0224E /* AccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D720FDA2D84F70254C3A55D4 /* AccessController.swift */; };
+		A6522F514886BE5A99B2F60C /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = C13C241FE1AD5784AB84A6F7 /* offsets.m */; };
+		AE4A1B2CBFDF93583BBEE30B /* MobileGestaltOffset.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD32CB787910953A86335D9 /* MobileGestaltOffset.m */; };
+		BE3AD8DB5545AA3BFAEA6929 /* PairBackPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127CC413EE526CD023519886 /* PairBackPlan.swift */; };
+		C56FD9EC8D73CC5047F2BDA8 /* libxpf.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7570E1492B5B3EFED4467EA6 /* libxpf.dylib */; };
+		E5B98BF883024E5566F7857B /* libgrabkernel2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 864BEA5EAF71BC5151C46392 /* libgrabkernel2.dylib */; };
+		EAE1E447E6721D11EC0E57D5 /* vnode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDCB8B959165F14556CE09F /* vnode.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6391FB45A98A8B3914E374C7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4C980C2E975D26A71D04D88A /* libxpf.dylib in Embed Frameworks */,
+				4D13DB2DBBC2DD05E4AF636B /* libgrabkernel2.dylib in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0346FCA18D83322E9AD6A1CF /* PairBackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairBackApp.swift; sourceTree = "<group>"; };
+		07E51D5B8F75E2F5C8929542 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		0CAA48BE0480B112ED206137 /* sbx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sbx.m; sourceTree = "<group>"; };
+		122D5AAAA1CEB0667AFBA4F3 /* vfs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vfs.m; sourceTree = "<group>"; };
+		127CC413EE526CD023519886 /* PairBackPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairBackPlan.swift; sourceTree = "<group>"; };
+		170888DFEDAD1D54E8A1F07A /* apfs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = apfs.m; sourceTree = "<group>"; };
+		2D201EDE29B940FE0FDEA197 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4212272C7AA97F6A44861CC3 /* darksword.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = darksword.m; sourceTree = "<group>"; };
+		5FDCB8B959165F14556CE09F /* vnode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vnode.m; sourceTree = "<group>"; };
+		7570E1492B5B3EFED4467EA6 /* libxpf.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxpf.dylib; path = Vendor/Lara/lib/libxpf.dylib; sourceTree = "<group>"; };
+		76542A7F44372E81475AE3FA /* KernelcacheLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KernelcacheLoader.swift; sourceTree = "<group>"; };
+		864BEA5EAF71BC5151C46392 /* libgrabkernel2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgrabkernel2.dylib; path = Vendor/Lara/lib/libgrabkernel2.dylib; sourceTree = "<group>"; };
+		8A86D33D532A51AF23565CB0 /* utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utils.m; sourceTree = "<group>"; };
+		ADD32CB787910953A86335D9 /* MobileGestaltOffset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileGestaltOffset.m; sourceTree = "<group>"; };
+		B7023BEBEC1EE2820A5A66F2 /* PairBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairBackView.swift; sourceTree = "<group>"; };
+		C13C241FE1AD5784AB84A6F7 /* offsets.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = offsets.m; sourceTree = "<group>"; };
+		C4D7D83F82B3DFD06860E4DD /* PairBack.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PairBack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEFCAA5785A78E12FBB46A5E /* PairingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingStore.swift; sourceTree = "<group>"; };
+		D720FDA2D84F70254C3A55D4 /* AccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3334F513BCB7D01DA78B77C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C56FD9EC8D73CC5047F2BDA8 /* libxpf.dylib in Frameworks */,
+				E5B98BF883024E5566F7857B /* libgrabkernel2.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		396FBCD694B65F2968443B38 = {
+			isa = PBXGroup;
+			children = (
+				6C80EF9888F32BEBA85B07D2 /* App */,
+				97DD11062F9360CB20F0D76C /* kexploit */,
+				7EC75C3358CEDFDE162DEE8E /* pe */,
+				8282CC8F9D5F9C06A6DEFBB5 /* Frameworks */,
+				C2CCCB5821FD014D66BB1BAF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6C80EF9888F32BEBA85B07D2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D720FDA2D84F70254C3A55D4 /* AccessController.swift */,
+				2D201EDE29B940FE0FDEA197 /* Assets.xcassets */,
+				07E51D5B8F75E2F5C8929542 /* BridgingHeader.h */,
+				76542A7F44372E81475AE3FA /* KernelcacheLoader.swift */,
+				ADD32CB787910953A86335D9 /* MobileGestaltOffset.m */,
+				0346FCA18D83322E9AD6A1CF /* PairBackApp.swift */,
+				127CC413EE526CD023519886 /* PairBackPlan.swift */,
+				B7023BEBEC1EE2820A5A66F2 /* PairBackView.swift */,
+				CEFCAA5785A78E12FBB46A5E /* PairingStore.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7EC75C3358CEDFDE162DEE8E /* pe */ = {
+			isa = PBXGroup;
+			children = (
+				170888DFEDAD1D54E8A1F07A /* apfs.m */,
+				0CAA48BE0480B112ED206137 /* sbx.m */,
+				122D5AAAA1CEB0667AFBA4F3 /* vfs.m */,
+				5FDCB8B959165F14556CE09F /* vnode.m */,
+			);
+			name = pe;
+			path = Vendor/Lara/kexploit/pe;
+			sourceTree = "<group>";
+		};
+		8282CC8F9D5F9C06A6DEFBB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				864BEA5EAF71BC5151C46392 /* libgrabkernel2.dylib */,
+				7570E1492B5B3EFED4467EA6 /* libxpf.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97DD11062F9360CB20F0D76C /* kexploit */ = {
+			isa = PBXGroup;
+			children = (
+				4212272C7AA97F6A44861CC3 /* darksword.m */,
+				C13C241FE1AD5784AB84A6F7 /* offsets.m */,
+				8A86D33D532A51AF23565CB0 /* utils.m */,
+			);
+			name = kexploit;
+			path = Vendor/Lara/kexploit;
+			sourceTree = "<group>";
+		};
+		C2CCCB5821FD014D66BB1BAF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4D7D83F82B3DFD06860E4DD /* PairBack.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1ECB817C13167ABF802C465A /* PairBack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13EDE671BCA71C6BF65CADE4 /* Build configuration list for PBXNativeTarget "PairBack" */;
+			buildPhases = (
+				ACDF9E7B3C111AA99F962C6C /* Sources */,
+				9F76A80F01029DC0886F530F /* Resources */,
+				3334F513BCB7D01DA78B77C6 /* Frameworks */,
+				6391FB45A98A8B3914E374C7 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PairBack;
+			packageProductDependencies = (
+			);
+			productName = PairBack;
+			productReference = C4D7D83F82B3DFD06860E4DD /* PairBack.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ED1EE8CAA7A4CF71B231A4D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					1ECB817C13167ABF802C465A = {
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 533B3E0F3D02FB781D059522 /* Build configuration list for PBXProject "PairBack" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 396FBCD694B65F2968443B38;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C2CCCB5821FD014D66BB1BAF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1ECB817C13167ABF802C465A /* PairBack */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9F76A80F01029DC0886F530F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96B9C9858F968D57BE65452F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ACDF9E7B3C111AA99F962C6C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A9181923A9B9EAA4BE0224E /* AccessController.swift in Sources */,
+				8B0DA417DB0DBB5AE5A709D3 /* KernelcacheLoader.swift in Sources */,
+				AE4A1B2CBFDF93583BBEE30B /* MobileGestaltOffset.m in Sources */,
+				77094A840E6EF876E783D952 /* PairBackApp.swift in Sources */,
+				BE3AD8DB5545AA3BFAEA6929 /* PairBackPlan.swift in Sources */,
+				0A884993AB9E6636EB21418E /* PairBackView.swift in Sources */,
+				162C27C094B901DF296D5F19 /* PairingStore.swift in Sources */,
+				84ACA301DA8693D259CE35F7 /* apfs.m in Sources */,
+				0AA18FA561B31AA433E8F6FA /* darksword.m in Sources */,
+				A6522F514886BE5A99B2F60C /* offsets.m in Sources */,
+				42C9753F3EB89BB2C192B071 /* sbx.m in Sources */,
+				7B908604F858DA583C7B7602 /* utils.m in Sources */,
+				313F39ACC129F899434B7B39 /* vfs.m in Sources */,
+				EAE1E447E6721D11EC0E57D5 /* vnode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4718C05DAE84FB18B3924F58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64e;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) PAIRBACK_DISABLE_PERSISTENCE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Vendor/Lara/headers $(SRCROOT)/Vendor/Lara/choma $(SRCROOT)/Vendor/Lara/kexploit $(SRCROOT)/Vendor/Lara/kexploit/pe $(SRCROOT)/Vendor/Lara/kexploit/TaskRop";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Vendor/Lara/lib";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		6CDF623950D2E36414BC2FA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Vendor/Lara/lib\"",
+				);
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.romashka.PairBack;
+				PRODUCT_NAME = PairBack;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = App/BridgingHeader.h;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		6F1E693492CFA779618D1F07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64e;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited) PAIRBACK_DISABLE_PERSISTENCE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Vendor/Lara/headers $(SRCROOT)/Vendor/Lara/choma $(SRCROOT)/Vendor/Lara/kexploit $(SRCROOT)/Vendor/Lara/kexploit/pe $(SRCROOT)/Vendor/Lara/kexploit/TaskRop";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited) $(SRCROOT)/Vendor/Lara/lib";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7EE83F15C761F6E5AC62A8F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"Vendor/Lara/lib\"",
+				);
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = me.romashka.PairBack;
+				PRODUCT_NAME = PairBack;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = App/BridgingHeader.h;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		13EDE671BCA71C6BF65CADE4 /* Build configuration list for PBXNativeTarget "PairBack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EE83F15C761F6E5AC62A8F5 /* Debug */,
+				6CDF623950D2E36414BC2FA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		533B3E0F3D02FB781D059522 /* Build configuration list for PBXProject "PairBack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F1E693492CFA779618D1F07 /* Debug */,
+				4718C05DAE84FB18B3924F58 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ED1EE8CAA7A4CF71B231A4D4 /* Project object */;
+}
