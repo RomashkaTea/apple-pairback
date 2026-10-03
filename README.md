@@ -1,8 +1,13 @@
 # PairBack
 
-PairBack helps pair a newer Apple Watch with an older iPhone without updating iOS. It combines the three settings used to pair an Apple Watch Series 10 on watchOS 26.5 with an iPhone 16 Pro on iOS 18.6.2. That is the only pairing combination verified so far.
+PairBack enables the hidden Network Relay Pairing that's enabled on iOS 26.0+ by default but gated behind an Apple Internal flag on iOS 18.x. I'm not yet sure if the path it enables exists on iOS 17.0.
 
-PairBack has no device-model or build whitelist. It checks Lara DarkSword's published iOS ranges: **17.0–18.7.1** and **26.0–26.0.1**. DarkSword does not support A19/M5 devices. Other iPhone and watch combinations may behave differently.
+PairBack relies on DarkSword for sandbox escape, so it's currently supported up to 18.7.1. 
+
+Verified on:  
+| **iPhone** | **iOS** | **Watch** | **watchOS** | **Result** |
+| --- | --- | --- | --- | --- |
+| iPhone 16 Pro | 18.6.2 | Apple Watch Series 10 | 26.5 | SUCCESS! |
 
 ## Changes
 
