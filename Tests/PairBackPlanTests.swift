@@ -85,4 +85,31 @@ final class PairBackPlanTests: XCTestCase {
     let damaged: NSDictionary = ["maxPairingCompatibilityVersion": 99]
     XCTAssertFalse(PairBackPlan.unrelatedRegistryEntriesPreserved(before: before, after: damaged))
   }
+
+  func testRegistryRestorePreservesLaterEntries() throws {
+    let original = try plist(["minPairingCompatibilityVersion": 24, "original": "keep"])
+    let current = try plist([
+      "maxPairingCompatibilityVersion": 99,
+      "minPairingCompatibilityVersion": 23,
+      "minPairingCompatibilityVersionWithChipID": 10,
+      "minQuickSwitchCompatibilityVersion": 6,
+      "original": "keep",
+      "addedLater": "keep too",
+    ])
+    let restored = try XCTUnwrap(
+      PairBackPlan.restoreRegistry(current: current, original: original))
+    let values = try PairBackPlan.dictionary(restored)
+    XCTAssertNil(values["maxPairingCompatibilityVersion"])
+    XCTAssertEqual(values["minPairingCompatibilityVersion"] as? Int, 24)
+    XCTAssertNil(values["minPairingCompatibilityVersionWithChipID"])
+    XCTAssertNil(values["minQuickSwitchCompatibilityVersion"])
+    XCTAssertEqual(values["original"] as? String, "keep")
+    XCTAssertEqual(values["addedLater"] as? String, "keep too")
+
+    let noOriginal = try PairBackPlan.restoreRegistry(current: current, original: nil)
+    let remaining = try PairBackPlan.dictionary(XCTUnwrap(noOriginal))
+    XCTAssertEqual(remaining["addedLater"] as? String, "keep too")
+    XCTAssertNil(remaining["maxPairingCompatibilityVersion"])
+    XCTAssertNil(try PairBackPlan.restoreRegistry(current: plist([:]), original: nil))
+  }
 }

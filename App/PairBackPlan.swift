@@ -137,6 +137,24 @@ enum PairBackPlan {
     return try data(dictionary)
   }
 
+  static func restoreRegistry(current: Data?, original: Data?) throws -> Data? {
+    let originalDictionary = try original.map(dictionary) ?? NSMutableDictionary()
+    let dictionary =
+      try current.map(dictionary)
+      ?? (originalDictionary.mutableCopy() as? NSMutableDictionary ?? NSMutableDictionary())
+    try validateLimitTypes(originalDictionary)
+    try validateLimitTypes(dictionary)
+    for key in limits.keys {
+      if let originalEntry = originalDictionary[key] {
+        dictionary[key] = originalEntry
+      } else {
+        dictionary.removeObject(forKey: key)
+      }
+    }
+    if dictionary.count == 0 && original == nil { return nil }
+    return try data(dictionary)
+  }
+
   static func limitsMatch(_ dictionary: NSDictionary) -> Bool {
     limits.allSatisfy { key, value in (dictionary[key] as? NSNumber)?.intValue == value }
   }

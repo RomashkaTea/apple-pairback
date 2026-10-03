@@ -17,7 +17,7 @@ Verified on:
 | MobileGestalt `AppleInternalInstall` cache entries | `1` |
 | NanoRegistry pairing limits | `99 / 23 / 10 / 6` |
 
-PairBack saves the original files before writing and can restore its own changes. It validates the MobileGestalt key location and file structure, preserves unrelated plist entries, and checks both disk and live NanoRegistry preferences. `AppleInternalInstall` is device-wide while enabled. The vendored DarkSword code has launchd persistence disabled; see [vendor provenance](Vendor/Lara/README.md).
+PairBack saves the original files before writing and can restore its own changes. It validates the MobileGestalt key location and file structure, preserves unrelated plist entries, and verifies the NanoRegistry plist on disk. Live NanoRegistry preferences may remain stale until reboot. `AppleInternalInstall` is device-wide while enabled. The vendored DarkSword code has launchd persistence disabled; see [vendor provenance](Vendor/Lara/README.md).
 
 ## Use
 

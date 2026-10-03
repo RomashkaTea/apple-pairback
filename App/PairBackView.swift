@@ -53,7 +53,7 @@ struct PairBackView: View {
       }
     }
     .navigationTitle("PairBack")
-    .onChange(of: access.isReady) { ready in
+    .onChange(of: access.isReady) { _, ready in
       if ready { store.refresh() }
     }
   }

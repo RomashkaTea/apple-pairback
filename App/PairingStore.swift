@@ -11,8 +11,12 @@ struct PairingStatus {
   let backupPresent: Bool
 
   var fullyApplied: Bool {
+    filesApplied && PairBackPlan.limitsMatch(registryPreferences)
+  }
+
+  var filesApplied: Bool {
     gestaltValue == 1 && gestaltExtra?.intValue == 1 && relayEnabled
-      && PairBackPlan.limitsMatch(registryDisk) && PairBackPlan.limitsMatch(registryPreferences)
+      && PairBackPlan.limitsMatch(registryDisk)
   }
 
   var summary: String {
@@ -118,7 +122,9 @@ final class PairingStore: ObservableObject {
       message =
         status?.fullyApplied == true
         ? "All three settings are enabled. No change is needed."
-        : "Review the values, then Apply if needed."
+        : status?.filesApplied == true
+          ? "Settings are on disk. Restart the iPhone to reload NanoRegistry."
+          : "Review the values, then Apply if needed."
     } catch {
       message = "Read failed: \(error.localizedDescription)"
     }
@@ -140,6 +146,7 @@ final class PairingStore: ObservableObject {
       "domain.owner.plist": domainDirectory.path,
       "flag.owner.plist": flags,
       "gestalt.owner.plist": gestalt,
+      "registry.owner.plist": registry,
     ]
   }
 
@@ -154,7 +161,7 @@ final class PairingStore: ObservableObject {
     _ work: () throws -> T
   ) throws -> T {
     guard receiptPaths[name] == path else { throw PairBackError("Unapproved ownership target") }
-    if path == flags || path == gestalt {
+    if path == flags || path == gestalt || path == registry {
       guard try fileExists(path) else {
         throw PairBackError("Ownership target disappeared: \(path)")
       }
@@ -216,7 +223,7 @@ final class PairingStore: ObservableObject {
       let receipt = backup.appendingPathComponent(name)
       guard fm.fileExists(atPath: receipt.path) else { continue }
       do {
-        if path == flags || path == gestalt {
+        if path == flags || path == gestalt || path == registry {
           guard try fileExists(path) else {
             throw PairBackError("Ownership target disappeared: \(path)")
           }
@@ -276,6 +283,14 @@ final class PairingStore: ObservableObject {
       try withTemporaryOwner(of: path, receipt: "gestalt.owner.plist") {
         try access.overwrite(data, at: path)
       }
+    } else if path == registry {
+      if exists {
+        try withTemporaryOwner(of: path, receipt: "registry.owner.plist") {
+          try access.overwrite(data, at: path)
+        }
+      } else {
+        try access.overwrite(data, at: path)
+      }
     } else {
       throw PairBackError("Unapproved file write target")
     }
@@ -285,6 +300,17 @@ final class PairingStore: ObservableObject {
     guard try fileExists(flags) else { return }
     try withTemporaryOwner(of: domainDirectory.path, receipt: "domain.owner.plist") {
       try fm.removeItem(atPath: flags)
+    }
+  }
+
+  private func writeRegistry(_ data: Data?) throws {
+    if let data {
+      try writeFile(data, at: registry)
+    } else if try fileExists(registry) {
+      try fm.removeItem(atPath: registry)
+      guard try !fileExists(registry) else {
+        throw PairBackError("NanoRegistry file still exists after removal")
+      }
     }
   }
 
@@ -333,24 +359,6 @@ final class PairingStore: ObservableObject {
     }
   }
 
-  private func setRegistryTargets(from source: NSDictionary) throws {
-    try PairBackPlan.validateLimitTypes(source)
-    for key in PairBackPlan.limits.keys {
-      CFPreferencesSetValue(
-        key as CFString, source[key] as? NSNumber,
-        preferenceDomain, preferenceUser, kCFPreferencesAnyHost)
-    }
-    guard CFPreferencesSynchronize(preferenceDomain, preferenceUser, kCFPreferencesAnyHost) else {
-      throw PairBackError("NanoRegistry preference sync failed")
-    }
-    let after = registryPreferences()
-    for key in PairBackPlan.limits.keys {
-      guard (after[key] as? NSNumber) == (source[key] as? NSNumber) else {
-        throw PairBackError("NanoRegistry preference readback differs for \(key)")
-      }
-    }
-  }
-
   private func verifyRegistryAfterWrite(expected: NSDictionary, before: NSDictionary) throws {
     let currentData = try readFile(registry)
     let current = try currentData.map(PairBackPlan.dictionary) ?? NSMutableDictionary()
@@ -360,7 +368,7 @@ final class PairingStore: ObservableObject {
       }
     }
     guard PairBackPlan.unrelatedRegistryEntriesPreserved(before: before, after: current) else {
-      throw PairBackError("An unrelated NanoRegistry preference changed during sync")
+      throw PairBackError("An unrelated NanoRegistry file entry changed")
     }
   }
 
@@ -371,7 +379,7 @@ final class PairingStore: ObservableObject {
     var backupComplete = false
     var touchedGestalt = false
     var touchedFlag = false
-    var touchedPreferences = false
+    var touchedRegistry = false
     var originalGestalt = Data()
     var originalFlag: Data?
     var originalRegistry: Data?
@@ -380,10 +388,12 @@ final class PairingStore: ObservableObject {
     do {
       try requireReady()
       let before = try readStatus()
-      if before.fullyApplied {
+      if before.filesApplied {
         status = before
         message =
-          "All three settings are already enabled. No files changed and no backup was created."
+          before.fullyApplied
+          ? "All three settings are already enabled. No change is needed."
+          : "Settings are already on disk. Restart the iPhone to reload NanoRegistry."
         return
       }
       guard let savedGestalt = try readFile(gestalt) else {
@@ -393,11 +403,6 @@ final class PairingStore: ObservableObject {
       originalFlag = try readFile(flags)
       originalRegistry = try readFile(registry)
       let disk = try originalRegistry.map(PairBackPlan.dictionary) ?? NSMutableDictionary()
-      let preferences = registryPreferences()
-      guard disk.isEqual(preferences) else {
-        throw PairBackError(
-          "NanoRegistry file and preference cache disagree. Restart the iPhone before applying.")
-      }
       featureExisted = try directoryExists(featureDirectory.path)
       domainExisted = try directoryExists(domainDirectory.path)
       let offset = Int(pb_mobilegestalt_offset(PairBackPlan.gestaltKey))
@@ -411,6 +416,11 @@ final class PairingStore: ObservableObject {
         domainExisted: domainExisted)
       backupComplete = true
 
+      if !PairBackPlan.limitsMatch(disk) {
+        touchedRegistry = true
+        try writeRegistry(PairBackPlan.data(stagedRegistry))
+        try verifyRegistryAfterWrite(expected: stagedRegistry, before: disk)
+      }
       if before.gestaltValue != 1 || before.gestaltExtra?.intValue != 1 {
         touchedGestalt = true
         try writeFile(stagedGestalt, at: gestalt)
@@ -420,24 +430,22 @@ final class PairingStore: ObservableObject {
         touchedFlag = true
         try writeFile(stagedFlag, at: flags)
       }
-      if !PairBackPlan.limitsMatch(disk) || !PairBackPlan.limitsMatch(preferences) {
-        touchedPreferences = true
-        try setRegistryTargets(from: stagedRegistry)
-        try verifyRegistryAfterWrite(expected: stagedRegistry, before: disk)
-      }
       let after = try readStatus()
-      guard after.fullyApplied else {
-        throw PairBackError("Final readback did not match all three settings")
+      guard after.filesApplied else {
+        throw PairBackError("Final disk readback did not match all three settings")
       }
       status = after
       message =
-        "Applied and verified. Restart the iPhone before pairing so Bridge and NanoRegistry reload their cached values."
+        "Applied and verified on disk. Restart the iPhone before pairing so Bridge and NanoRegistry reload their cached values."
     } catch {
       var rollbackProblems: [String] = []
-      if touchedPreferences {
+      if touchedRegistry {
         do {
-          let disk = try originalRegistry.map(PairBackPlan.dictionary) ?? NSMutableDictionary()
-          try setRegistryTargets(from: disk)
+          let current = try readFile(registry)
+          let restored =
+            (try? PairBackPlan.restoreRegistry(current: current, original: originalRegistry))
+            ?? originalRegistry
+          try writeRegistry(restored)
         } catch { rollbackProblems.append("NanoRegistry: \(error.localizedDescription)") }
       }
       if touchedFlag {
@@ -477,8 +485,6 @@ final class PairingStore: ObservableObject {
             restored.relayEnabled == (try PairBackPlan.flagEnabled(originalFlag)),
             PairBackPlan.limits.keys.allSatisfy({ key in
               (restored.registryDisk[key] as? NSNumber) == (originalDisk[key] as? NSNumber)
-                && (restored.registryPreferences[key] as? NSNumber)
-                  == (originalDisk[key] as? NSNumber)
             })
           else {
             throw PairBackError("Rollback readback differs")
@@ -496,7 +502,7 @@ final class PairingStore: ObservableObject {
       }
       status = try? readStatus()
       let outcome: String
-      if !touchedGestalt && !touchedFlag && !touchedPreferences {
+      if !touchedGestalt && !touchedFlag && !touchedRegistry {
         outcome = "No pairing settings changed."
       } else if rollbackProblems.isEmpty {
         outcome = "Prior values restored."
@@ -546,10 +552,9 @@ final class PairingStore: ObservableObject {
       let currentFlag = try readFile(flags)
       let currentRegistry = try readFile(registry)
       let currentDisk = try currentRegistry.map(PairBackPlan.dictionary) ?? NSMutableDictionary()
-      guard currentDisk.isEqual(registryPreferences()) else {
-        throw PairBackError(
-          "NanoRegistry file and preference cache disagree. Restart before restoring.")
-      }
+      let restoredRegistry = try PairBackPlan.restoreRegistry(
+        current: currentRegistry, original: originalRegistry)
+      let restoredDisk = try restoredRegistry.map(PairBackPlan.dictionary) ?? NSMutableDictionary()
       let offset = Int(pb_mobilegestalt_offset(PairBackPlan.gestaltKey))
       let restoredGestalt = try PairBackPlan.restoreGestalt(
         current: currentGestalt, original: originalGestalt, offset: offset)
@@ -576,14 +581,14 @@ final class PairingStore: ObservableObject {
         }
       }
 
-      var touchedPreferences = false
+      var touchedRegistry = false
       var touchedGestalt = false
       var touchedFlag = false
       var verifiedStatus: PairingStatus?
       do {
-        touchedPreferences = true
-        try setRegistryTargets(from: originalDisk)
-        try verifyRegistryAfterWrite(expected: originalDisk, before: currentDisk)
+        touchedRegistry = true
+        try writeRegistry(restoredRegistry)
+        try verifyRegistryAfterWrite(expected: restoredDisk, before: currentDisk)
         if restoredGestalt != currentGestalt {
           touchedGestalt = true
           try writeFile(restoredGestalt, at: gestalt)
@@ -609,8 +614,6 @@ final class PairingStore: ObservableObject {
           verified.relayEnabled == (try PairBackPlan.flagEnabled(originalFlag)),
           PairBackPlan.limits.keys.allSatisfy({ key in
             (verified.registryDisk[key] as? NSNumber) == (originalDisk[key] as? NSNumber)
-              && (verified.registryPreferences[key] as? NSNumber)
-                == (originalDisk[key] as? NSNumber)
           })
         else {
           throw PairBackError("Restore readback differs")
@@ -632,8 +635,8 @@ final class PairingStore: ObservableObject {
             rollbackProblems.append("MobileGestalt: \(error.localizedDescription)")
           }
         }
-        if touchedPreferences {
-          do { try setRegistryTargets(from: currentDisk) } catch {
+        if touchedRegistry {
+          do { try writeRegistry(currentRegistry) } catch {
             rollbackProblems.append("NanoRegistry: \(error.localizedDescription)")
           }
         }
