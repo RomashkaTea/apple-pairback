@@ -8,6 +8,7 @@ Verified on:
 | **iPhone** | **iOS** | **Watch** | **watchOS** | **Result** |
 | --- | --- | --- | --- | --- |
 | iPhone 16 Pro | 18.6.2 | Apple Watch Series 10 | 26.5 | SUCCESS! |
+| iPhone 13 Pro Max | 18.6 | Apple Watch SE 2nd gen | 26.6 | SUCCESS! |
 
 ## Changes
 
