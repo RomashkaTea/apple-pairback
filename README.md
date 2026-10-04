@@ -10,6 +10,7 @@ Verified on:
 | iPhone 16 Pro | 18.6.2 | Apple Watch Series 10 | 26.5 | SUCCESS! |
 | iPhone 15 | 18.6.2 | Apple Watch SE 2nd gen | 26.5 | SUCCESS! |
 | iPhone 13 Pro Max | 18.6 | Apple Watch SE 2nd gen | 26.6 | SUCCESS! |
+| iPhone 11 Pro | 26.0.1 | Apple Watch Series 9 | 27.0 beta (24R5347a) | SUCCESS!
 
 ## Changes
 
