@@ -7,10 +7,11 @@ PairBack relies on DarkSword for sandbox escape, so it's currently supported up 
 Verified on:  
 | **iPhone** | **iOS** | **Watch** | **watchOS** | **Result** |
 | --- | --- | --- | --- | --- |
-| iPhone 16 Pro | 18.6.2 | Apple Watch Series 10 | 26.5 | SUCCESS! |
-| iPhone 15 | 18.6.2 | Apple Watch SE 2nd gen | 26.5 | SUCCESS! |
-| iPhone 13 Pro Max | 18.6 | Apple Watch SE 2nd gen | 26.6 | SUCCESS! |
-| iPhone 11 Pro | 26.0.1 | Apple Watch Series 9 | 27.0 beta (24R5347a) | SUCCESS!
+| iPhone 16 Pro | 18.6.2 (22G100) | Apple Watch Series 10 | 26.5 (23T570) | SUCCESS! |
+| iPhone 15 | 18.6.2 (22G100) | Apple Watch SE 2nd gen | 26.5 (23T570) | SUCCESS! |
+| iPhone 13 Pro | 18.6.2 (22G100) | Apple Watch Series 6 | 26.5 (23T570) | SUCCESS! |
+| iPhone 13 Pro Max | 18.6 (22G86) | Apple Watch SE 2nd gen | 26.6 (23U67) | SUCCESS! |
+| iPhone 11 Pro | 26.0.1 (23A355) | Apple Watch Series 9 | 27.0 beta (24R5347a) | SUCCESS!
 
 ## Changes
 
